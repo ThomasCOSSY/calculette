@@ -15,6 +15,7 @@ let buttonSubstraction = document.getElementById("buttonSubstraction");
 let buttonAddition = document.getElementById("buttonAddition");
 let buttonComma = document.getElementById("buttonComma");
 let buttonEqual = document.getElementById("buttonEqual");
+let buttonReset = document.getElementById('buttonReset');
 
 button1.value = 1;
 button2.value = 2;
@@ -26,65 +27,85 @@ button7.value = 7;
 button8.value = 8;
 button9.value = 9;
 button0.value = 0;
-buttonComma.value = ",";
-
-// buttonDivide.value = "/";
-// buttonMultiply.value = "*";
-// buttonSubstraction.value = "-";
-// buttonAddition.value = "+";
+buttonComma.value = ".";
 
 
-// premier chiffre
 let firstNumber = document.getElementById("firstNumber");
-let secondtNumber = document.getElementById("secondNumber");
+let secondNumber = document.getElementById("secondNumber");
 let operation = document.getElementById("operation");
 let buttonsArray = document.querySelectorAll("button");
-let result = document.getElementById("result");
+
+
+let result = firstNumber;
 
 
 buttonsArray.forEach(button => button.onclick = function one(e) {
     e.preventDefault();
     let text1 = "";
-    text1 = button.value;
-    screen.innerHTML += text1;
 
+
+    if (button == button) {
+        text1 = button.value;
+        result.innerHTML += text1;
+    }
+    console.log(result.innerHTML)
+
+    if (button == buttonDivide) {
+        operation.innerHTML = buttonDivide.value = "/";
+        result = secondNumber;
+        buttonDivide.setAttribute("disabled", "");
+    }
+    if (button == buttonMultiply) {
+        operation.innerHTML = buttonMultiply.value = "x";
+        result = secondNumber;
+        buttonMultiply.setAttribute("disabled", "");
+    }
+    if (button == buttonSubstraction) {
+        operation.innerHTML = buttonSubstraction.value = "-";
+        result = secondNumber;
+        buttonSubstraction.setAttribute("disabled", "");
+    }
+    if (button == buttonAddition) {
+        operation.innerHTML = buttonAddition.value = "+";
+        result = secondNumber;
+        buttonAddition.setAttribute("disabled", "");
+        
+    }
+    if (button == buttonClear) {
+        result.innerHTML = "";        
+    }
+
+    if (button == buttonReset) {        
+        location.reload();
+    }
 });
 
-// deuxieme chiffre
-buttonsArray.forEach(button => button.onclick = function two(e) { 
+
+
+buttonEqual.onclick = function three(e) {
     e.preventDefault();
-    let text2 = "";    
-    text2 = button.value;
-    secondNumber.innerHTML += text2;
-});
+    let imgManip = document.getElementById("img");
 
-//le signe
-buttonsArray.forEach(button => button.onclick = function three(e) { 
-    e.preventDefault();
-    let text3 = ""; 
-    if (button == buttonDivide)   {
-        operation.innerHTML = text3 = "/";
-    }
-    if (button == buttonMultiply)   {
-        operation.innerHTML = text3 = "x";
-    }
-    if (button == buttonSubstraction)   {
-        operation.innerHTML = text3 = "-";
-    }
-    if (button == buttonAddition)   {
-        operation.innerHTML = text3 = "+";
-    }
-});
+    if (imgManip.src.match("genie")) {
+        
+        imgManip.src = "assets/img/genie2.png";
+    };
 
+    if (operation.innerHTML == "/") {
+        equal.innerHTML = parseFloat(firstNumber.innerHTML) / parseFloat(secondNumber.innerHTML)
+    };
 
-buttonEqual.onclick = function four(e) {
-    e.preventDefault();
-if (operation.value == "/") {result.innerHTML = Number(firstNumber.value / secondNumber.value)};
+    if (operation.innerHTML == "x") {
+        equal.innerHTML = parseFloat(firstNumber.innerHTML) * parseFloat(secondNumber.innerHTML)
+    };
 
-if (operation.value == "x") {result.innerHTML = Number(firstNumber.value * secondNumber.value)};
+    if (operation.innerHTML == "-") {
+        equal.innerHTML = parseFloat(firstNumber.innerHTML) - parseFloat(secondNumber.innerHTML)
+    };
 
-if (operation.value == "-") {result.innerHTML = Number(firstNumber.value - secondNumber.value)};
-
-if (operation.value == "+") {result.innerHTML = Number(firstNumber.value + secondNumber.value)};
+    if (operation.innerHTML == "+") {
+        equal.innerHTML = parseFloat(firstNumber.innerHTML) + parseFloat(secondNumber.innerHTML)
+    };
 
 };
+
